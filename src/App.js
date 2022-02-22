@@ -20,9 +20,24 @@ function App() {
     }
   }
 
+  function sortContactsByName() {
+    const sortedContacts = [...contacts];
+    sortedContacts.sort((a, b) => a.name.localeCompare(b.name));
+    setContacts(sortedContacts);
+  }
+
+  function sortContactsByPop() {
+    const sortedContacts = [...contacts];
+    sortedContacts.sort((a, b) => b.popularity - a.popularity);
+    setContacts(sortedContacts);
+  }
+
   return (
     <div className="App">
       <h1>IronContacts</h1>
+      <button onClick={ addContact }>Add Random Contact</button>
+      <button onClick={ sortContactsByName } >Sort by Name</button>
+      <button onClick={ sortContactsByPop }>Sort by Popularity</button>
        <table className="Table">
         <thead>
           <tr>
@@ -47,7 +62,6 @@ function App() {
           })}
         </tbody>
        </table>
-       <button onClick={ addContact }>Add Random Contact</button>
     </div>
   );
 }
