@@ -4,7 +4,21 @@ import { useState } from 'react';
 
 function App() {
 
-  const [contacts, setContacts] = useState(contactsArr);
+  const [contacts, setContacts] = useState(contactsArr.slice(0,5));
+
+  function addContact() {
+
+    const remaining = contactsArr.filter(contact => !contacts.includes(contact));
+    
+    if (remaining.length > 0) {
+      
+      const newContacts = [...contacts];
+      const randomIndex = Math.floor(Math.random() * remaining.length);
+      newContacts.push(remaining[randomIndex]);
+
+      setContacts(newContacts);
+    }
+  }
 
   return (
     <div className="App">
@@ -22,8 +36,8 @@ function App() {
         <tbody>
           {contacts.map((contact) => {
             return (
-              <tr>
-                <td> <img className='Img' src={ contact.pictureUrl }/> </td>
+              <tr key={ contact.id }>
+                <td> <img className='Img' src={ contact.pictureUrl } alt={ contact.name }/> </td>
                 <td> { contact.name }</td>
                 <td> { Math.round(contact.popularity * 100) / 100 }</td>
                 <td> { (contact.wonOscar) && <span role="img" aria-label="trophy">🏆</span> } </td>
@@ -33,6 +47,7 @@ function App() {
           })}
         </tbody>
        </table>
+       <button onClick={ addContact }>Add Random Contact</button>
     </div>
   );
 }
