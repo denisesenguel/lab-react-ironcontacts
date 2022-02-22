@@ -8,7 +8,8 @@ function App() {
 
   return (
     <div className="App">
-       <table>
+      <h1>IronContacts</h1>
+       <table className="Table">
         <thead>
           <tr>
             <th>Picture</th>
@@ -20,9 +21,9 @@ function App() {
           {contacts.map((contact) => {
             return (
               <tr>
-                <td> <img src={contact.pictureUrl}/> </td>
-                <td>{contact.name}</td>
-                <td>{contact.popularity}</td>
+                <td> <img className='Img' src={ contact.pictureUrl }/> </td>
+                <td>{ contact.name }</td>
+                <td>{ Math.round(contact.popularity * 100) / 100 }</td>
               </tr>
             )
           })}
