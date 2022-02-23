@@ -39,12 +39,15 @@ function App() {
 
   return (
     <div className="App">
-      <h1>IronContacts</h1>
+      <header className="Header">
+        IronContacts
+      </header>
       <button onClick={ addContact }>Add Random Contact</button>
+      <br />
       <button onClick={ sortContactsByName } >Sort by Name</button>
       <button onClick={ sortContactsByPop }>Sort by Popularity</button>
        <table className="Table">
-        <thead>
+        <thead className="TableHeader">
           <tr>
             <th>Picture</th>
             <th>Name</th>
@@ -57,7 +60,7 @@ function App() {
         <tbody>
           {contacts.map((contact) => {
             return (
-              <tr key={ contact.id }>
+              <tr key={ contact.id } className="TableRow">
                 <td> <img className='Img' src={ contact.pictureUrl } alt={ contact.name }/> </td>
                 <td> { contact.name }</td>
                 <td> { Math.round(contact.popularity * 100) / 100 }</td>
